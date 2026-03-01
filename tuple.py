@@ -1,13 +1,28 @@
-liste=[5, 12, -3, 8, -1, 0, 15]
-liste2=[]
+# --- Tuple oluşturma ve eleman erişimi ---
 
-for sayi in liste[:]:
-    if sayi<0:
-        liste.remove(sayi)
-    else:
-        liste2.append(sayi) 
+koordinat = (10, 20)
 
-print(liste)
-print(liste2)
+print("X:", koordinat[0])
+print("Y:", koordinat[1])
 
 
+# --- Tuple içinde döngü kullanma ---
+
+sayilar = (1, 2, 3, 4, 5)
+
+toplam = 0
+
+for sayi in sayilar:
+    toplam += sayi
+
+print("Toplam:", toplam)
+
+
+# --- Tuple → liste çevirme (değiştirmek için) ---
+
+renkler = ("kırmızı", "mavi", "yeşil")
+
+renkler_liste = list(renkler)
+renkler_liste.append("sarı")
+
+print("Güncellenmiş liste:", renkler_liste)

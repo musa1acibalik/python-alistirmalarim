@@ -1,52 +1,54 @@
-# rehber={}
+# --- Telefon rehberi uygulaması ---
 
-# for i in range(3):
-#     isim=input("isim gir:")
-#     numara=input("numara gir:")
-#     rehber[isim]=numara
+rehber = {}
 
-# arama=input("arama yapılcak kişi:")
+for i in range(3):
+    isim = input("İsim gir: ")
+    numara = input("Numara gir: ")
+    rehber[isim] = numara
 
-# if arama in rehber:
-#     print("numara:",rehber[arama])
-# else:
-#     print("kişi bulunamadı")    
+arama = input("Aranacak kişi: ")
 
-
-# cümle=input("bir cümle giriniz:")
-# kelimeler=cümle.split()
-
-# sayaç={}
+if arama in rehber:
+    print("Numara:", rehber[arama])
+else:
+    print("Kişi bulunamadı")
 
 
-# for kelime in kelimeler:
-#     if kelime in sayaç:
-#         sayaç[kelime]+=1
-#     else:
-#         sayaç[kelime]=1
+# --- Kelime sayacı ---
+
+cumle = input("\nBir cümle giriniz: ")
+kelimeler = cumle.split()
+
+sayac = {}
+
+for kelime in kelimeler:
+    if kelime in sayac:
+        sayac[kelime] += 1
+    else:
+        sayac[kelime] = 1
+
+print("Kelime sayıları:")
+for kelime, adet in sayac.items():
+    print(kelime, ":", adet)
 
 
-# for kelime,adet in sayaç.items():
-#     print(kelime,"",adet)
+# --- Takipçi karşılaştırma (set kullanımı) ---
+
+takip_ettiklerim = ["Ali", "Ayşe", "Mehmet", "Zeynep"]
+beni_takip_edenler = ["Ayşe", "Zeynep"]
+
+set1 = set(takip_ettiklerim)
+set2 = set(beni_takip_edenler)
+
+takip_etmeyenler = set1 - set2
+ortaklar = set1 & set2
+
+print("\nBeni takip etmeyenler:", takip_etmeyenler)
+print("Ortak olanlar:", ortaklar)
 
 
-# takip_ettiklerim = ["Ali", "Ayşe", "Mehmet", "Zeynep"]
-# beni_takip_edenler = ["Ayşe", "Zeynep"]
-
-# set1 = set(takip_ettiklerim)
-# set2 = set(beni_takip_edenler)
-
-# takip_etmeyenler = set1 - set2
-# ortaklar = set1 & set2
-
-# print("Beni takip etmeyenler:", takip_etmeyenler)
-# print("Ortak olanlar:", ortaklar)
-
-
-# urun=input("ürün adı:")
-#         adet=int(input("bu üründen kaç adet var"))
-#         urunler[urun]=adet
-
+# --- Stok yönetim mini programı ---
 
 urunler = {
     "elma": 10,
@@ -54,35 +56,34 @@ urunler = {
     "süt": 8
 }
 
-
 while True:
 
-    print("ürün eklemek için 1'e basınız")
-    print("stok miktarı için 2'ye basınız:")
-    print("ürün silmek için 3'e basınız")
-    print("çıkış yapmak için 4'ye basınız:")
+    print("\n1- Ürün ekle / stok artır")
+    print("2- Stokları göster")
+    print("3- Ürün sil")
+    print("4- Çıkış")
 
-    secim=input()
+    secim = input("Seçim: ")
 
-    if secim=="1":
-        urun=input("ürün adı:")
-        adet=int(input("bu üründen kaç adet var"))
-        urunler[urun]=adet
+    if secim == "1":
+        urun = input("Ürün adı: ")
+        adet = int(input("Kaç adet eklenecek: "))
 
         if urun in urunler:
             urunler[urun] += adet
         else:
-            urunler[urun]=adet
+            urunler[urun] = adet
 
-    elif secim=="2": 
-        for urun,adet in urunler.items():
-            print(urun,":",adet)
+    elif secim == "2":
+        for urun, adet in urunler.items():
+            print(urun, ":", adet)
 
-    elif secim=="3":  
-        urun=input("silinecek ürün")
-        urunler.pop(urun)
+    elif secim == "3":
+        urun = input("Silinecek ürün: ")
+        urunler.pop(urun, None)
 
-    elif secim=="4":
+    elif secim == "4":
         break
+
     else:
-        print("geçersiz seçim")    
+        print("Geçersiz seçim")

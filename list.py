@@ -1,52 +1,56 @@
+def parcala(ifade):
+    tokens=[]
+    sayi=""
 
-### LİSTE
-
-# kurum="BTK AKADEMİ".split()
-
-# print(kurum[0])
-# print(type(kurum))
-
-# ogrenci=["çınar","Turan",60,60,90]
-# print(ogrenci[0], "ogrencimizin ortalaması ",f"{ogrenci[1],(ogrenci[2]+ogrenci[3]+ogrenci[4])/3}")
-
-# ogrenciler=[["çınar","Turan",60,70,80],["ali","turan",80,90,100]]
-# print(ogrenciler[0][1])
+    for karakter in ifade:
+        if karakter.isdigit():
+            sayi+=karakter
+        else:
+            tokens.append(int(sayi))
+            tokens.append(karakter)
+            sayi=""
 
 
-#LİSTE TANIMLAMA
+    tokens.append(int(sayi))
+    return tokens
 
-#programlama_dilleri=["python","c#","java","javaScript"]
-# sonuc=programlama_dilleri
-# print(sonuc)
-# print(type(sonuc))
-# print(sonuc[0])
-# print(sonuc[0:2])
-# print(sonuc[:2])
-# print(sonuc[:])
-# print(sonuc[-3:-1])
-# print(sonuc[:])
+def hesapla(tokens):
 
-# programlama_dilleri[-1]="react"
-# sonuc=programlama_dilleri
-# sonuc=programlama_dilleri+["go","delphi"]
-# sonuc=len(programlama_dilleri)
-# sonuc="python" in programlama_dilleri
-# print(sonuc)
+   
+    i = 0
+    while i < len(tokens):
+        if tokens[i] == "*":
+            sonuc = tokens[i-1] * tokens[i+1]
+            tokens[i-1:i+2] = [sonuc]
+            i = 0
 
+        elif tokens[i] == "/":
+            sonuc = tokens[i-1] / tokens[i+1]
+            tokens[i-1:i+2] = [sonuc]
+            i = 0
 
-# liste=[5, 12, -3, 8, -1, 0, 15]
-# liste2=[]
+        else:
+            i += 1
 
-# for sayi in liste[:]:
-#     if sayi<0:
-#         liste.remove(sayi)
-#     else:
-#         liste2.append(sayi) 
+    # sonra + ve -
+    sonuc = tokens[0]
+    i = 1
 
-# print(liste)
-# print(liste2)
+    while i<len(tokens):
+        if tokens[i] == "+":
+            sonuc+=tokens[i+1]
+        elif tokens[i] == "-":
+            sonuc-=tokens[i+1]
 
+        i+=2    
+    
+    return sonuc
+             
+while True:
+    ifade=input("bir işlem girim")
 
+    if ifade=="q":
+        break
 
-
-
+    tokens=parcala(ifade)
+    print("sonuc",hesapla(tokens))
